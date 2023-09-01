@@ -1,0 +1,39 @@
+@use "../abstracts" as var;
+
+.banner {
+  margin-top: 7.3rem;
+
+  .container {
+    background: #ee7559;
+    padding: 3rem 3.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logomulti {
+      max-width: 355px;
+    }
+
+    .logo-hp {
+      max-width: 83px;
+    }
+
+    .log-hexis {
+      width: 143px;
+    }
+
+    strong {
+      font-size: 3.5rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      line-height: 1;
+
+      span {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}

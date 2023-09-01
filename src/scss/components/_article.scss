@@ -1,0 +1,41 @@
+@use "../abstracts" as var;
+
+h1 {
+  font-size: 7.3rem;
+  color: var.$blue;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 4.5rem;
+  color: black;
+}
+
+article {
+  margin-top: 3.7rem;
+
+  strong {
+    font-size: 3.1rem;
+    color: var.$blue;
+  }
+}
+
+.informations {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  a {
+    font-size: 2.4rem;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+h3 {
+  font-size: 3.7rem;
+  line-height: 1;
+}

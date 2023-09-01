@@ -1,0 +1,21 @@
+@use "../abstracts" as var;
+
+header {
+  .blue-background__container {
+    background: var.$blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 7.8rem;
+    padding-top: 5.1rem;
+    gap: 8rem;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}

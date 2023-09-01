@@ -1,0 +1,13 @@
+@use "base";
+@use "abstracts" as var;
+@use "components";
+
+.container {
+  max-width: min(80%, 1330px);
+  margin-inline: auto;
+}
+
+.container-narrow {
+  max-width: min(75%, 1050px);
+  margin-inline: auto;
+}

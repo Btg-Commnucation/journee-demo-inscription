@@ -1,0 +1,36 @@
+@mixin breakpoint($breakpoint) {
+  @if $breakpoint == "tablet" {
+    @media (max-width: 1330px) {
+      @content;
+    }
+  } @else if $breakpoint == "mobile" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin fontSize($size, $maxSize: $size) {
+  @if $maxSize == $size {
+    font-size: #{$size}px;
+  } @else {
+    @include responsiveElem(font-size, $size, $maxSize);
+  }
+}
+
+@mixin responsiveElem(
+  $property,
+  $minSize,
+  $maxSize,
+  $minWidth: 320,
+  $maxWidth: 1920
+) {
+  #{$property}: calc(
+    #{$minSize}px + (#{$maxSize} - #{$minWidth}) *
+      ((100vw - #{$minWidth}px) / (#{$maxWidth} - #{$minWidth}))
+  );
+}
