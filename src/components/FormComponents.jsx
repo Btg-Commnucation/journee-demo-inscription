@@ -19,8 +19,10 @@ const userSchema = object().shape({
 
 const FormComponents = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isOnError, setIsOnError] = useState(false);
 
   const handleSubmit = async (values) => {
+    setIsOnError(false);
     const payload = new FormData();
     payload.set("prenom", values.prenom);
     payload.set("nom", values.nom);
@@ -38,6 +40,7 @@ const FormComponents = () => {
       console.log(response.data);
       setIsSubmitted(true);
     } catch (e) {
+      setIsOnError(true);
       console.log(e);
     }
   };
@@ -205,6 +208,14 @@ const FormComponents = () => {
                     className="error-message"
                   />
                 </label>
+                {isOnError && (
+                  <div className="fatal-error">
+                    <strong>
+                      Une erreur c&apos;est produite, veuillez réessayer plus
+                      tard
+                    </strong>
+                  </div>
+                )}
                 <button type="submit">Valider mon inscription</button>
               </Form>
             )}
