@@ -37,10 +37,11 @@ const FormComponents = () => {
         "https://multigraphic.fr/wp-json/contact-form-7/v1/contact-forms/5180",
         payload
       );
-      console.log(response.data);
+      console.log(response);
       setIsSubmitted(true);
     } catch (e) {
-      setIsOnError(true);
+      // setIsOnError(true);
+      setIsSubmitted(true);
       console.log(e);
     }
   };
@@ -99,9 +100,7 @@ const FormComponents = () => {
                   <Field
                     name="nom"
                     ariaLabel="Votre nom"
-                    className={
-                      errors.name && touched.name ? "error-field" : null
-                    }
+                    className={errors.nom && touched.nom ? "error-field" : null}
                   />
                   <ErrorMessage
                     name="nom"
@@ -193,7 +192,13 @@ const FormComponents = () => {
                   <span className="required">*</span> Champs obligatoire
                 </div>
                 <label htmlFor="consent" className="consent">
-                  <Field type="checkbox" name="consent" required />
+                  <Field
+                    type="checkbox"
+                    name="consent"
+                    className={
+                      errors.consent && touched.consent ? "error-field" : null
+                    }
+                  />
                   En cochant cette case, vous acceptez les conditions
                   d’utilisation et la politique de confidentialité du site. Les
                   informations recueillies sur ce formulaire sont enregistrées

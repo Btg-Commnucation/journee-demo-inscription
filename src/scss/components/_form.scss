@@ -30,6 +30,11 @@ form {
     .required {
       color: #d51a1a;
     }
+
+    &.consent {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+    }
   }
 
   input {
@@ -39,8 +44,38 @@ form {
     padding: 1rem;
     font-weight: 400;
 
+    &[type="checkbox"] {
+      appearance: none;
+      background: white;
+      margin: 0;
+      font: inherit;
+      color: currentColor;
+      width: 20px !important;
+      height: 20px;
+      border-radius: 0.15em;
+      padding: 0;
+      transform: translateY(5px);
+      border: 0.15em solid currentColor;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+
+      &::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em var.$blue;
+      }
+
+      &:checked::before {
+        transform: scale(1);
+      }
+    }
+
     &.error-field {
-      border-color: var.$red;
+      border: 2px solid var.$red;
     }
   }
 
