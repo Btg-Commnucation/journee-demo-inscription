@@ -27,7 +27,7 @@ const FormComponents = () => {
     payload.set("prenom", values.prenom);
     payload.set("nom", values.nom);
     payload.set("email", values.email);
-    payload.set("phoneNumber", values.phoneNumber);
+    payload.set("sms", values.phoneNumber);
     payload.set("town", values.town);
     payload.set("country", values.country);
     payload.set("zipCode", values.zipCode);
@@ -52,7 +52,7 @@ const FormComponents = () => {
           <h2>Merci pour votre inscription et rendez-vous</h2>
           <strong>le 4 et 5 octobre 2023 - 10h00 - 18h30</strong>
           <p>TOULOUSE - Domaine de Montjoie</p>
-          <a href="" target="_blank">
+          <a href="/plan_acces_jpo.pdf" target="_blank">
             Télécharger les infos pratiques au format PDF
           </a>
         </div>
