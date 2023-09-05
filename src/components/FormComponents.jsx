@@ -34,14 +34,13 @@ const FormComponents = () => {
 
     try {
       const response = await axios.post(
-        "https://multigraphic.fr/wp-json/contact-form-7/v1/contact-forms/5180",
+        "https://multigraphic.fr/wp-json/contact-form-7/v1/contact-forms/5180/feedback",
         payload
       );
       console.log(response);
       setIsSubmitted(true);
     } catch (e) {
-      // setIsOnError(true);
-      setIsSubmitted(true);
+      setIsOnError(true);
       console.log(e);
     }
   };
