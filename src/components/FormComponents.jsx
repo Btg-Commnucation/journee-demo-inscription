@@ -26,6 +26,9 @@ const userSchema = object().shape({
   societe: string()
     .min(2, "Le nom de la société est invalide")
     .required("Le nom de votre entreprise est requis"),
+  dayToCome: string()
+    .oneOf(["4 octobre", "5 octobre", "Les 4 et 5 octobre"])
+    .required("Veuillez choisir une date"),
   interest: string().oneOf([
     "Covering",
     "Vitrophanie",
@@ -35,7 +38,7 @@ const userSchema = object().shape({
 });
 
 const FormComponents = () => {
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isOnError, setIsOnError] = useState(false);
 
   const handleSubmit = async (values) => {
@@ -49,6 +52,7 @@ const FormComponents = () => {
     payload.set("country", values.country);
     payload.set("zipCode", values.zipCode);
     payload.set("societe", values.societe);
+    payload.set("dayToCome", values.dayToCome);
     payload.set("interest", values.interest);
 
     try {
@@ -242,6 +246,35 @@ const FormComponents = () => {
                     className="error-message"
                   />
                 </label>
+                <label htmlFor="dayToCome" className="town">
+                  <span>
+                    Quel(s) jour(s) souhaitez-vous venir ?{" "}
+                    <span className="required">*</span>
+                  </span>
+                  <Field
+                    name="dayToCome"
+                    id="day-to-come"
+                    aria-label="Quel(s) jour(s) souhaitez-vous venir ?"
+                    className={
+                      errors.dayToCome && touched.dayToCome
+                        ? "error-field"
+                        : null
+                    }
+                    as="select"
+                  >
+                    <option value="" disabled selected>
+                      --Veuillez choisir une date--
+                    </option>
+                    <option value="Covering">4 octobre</option>
+                    <option value="Vitrophanie">5 octobre</option>
+                    <option value="Enseigne">Les 4 et 5 octobre</option>
+                  </Field>
+                  <ErrorMessage
+                    name="dayToCome"
+                    component="div"
+                    className="error-message"
+                  />
+                </label>
                 <label htmlFor="interest" className="town">
                   Votre centre d&apos;intérêt
                   <Field
@@ -254,7 +287,7 @@ const FormComponents = () => {
                     as="select"
                   >
                     <option value="" disabled selected>
-                      --Veuillez choisir une option--
+                      --Veuillez choisir un centre d&apos;intérêt--
                     </option>
                     <option value="Covering">Covering</option>
                     <option value="Vitrophanie">Vitrophanie</option>

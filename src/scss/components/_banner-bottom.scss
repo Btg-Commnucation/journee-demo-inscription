@@ -42,10 +42,10 @@
     }
 
     .logomulti {
-      max-width: 355px;
+      max-width: 300px;
 
       @media (max-width: 1330px) {
-        max-width: 248px;
+        max-width: 220px;
       }
 
       @media (max-width: 520px) {
@@ -54,23 +54,23 @@
     }
 
     .logo-hp {
-      max-width: 83px;
+      max-width: 73px;
 
       @media (max-width: 1330px) {
-        max-width: 61.34px;
+        max-width: 51.34px;
       }
     }
 
     .logo-hexis {
-      width: 143px;
+      width: 133px;
 
       @media (max-width: 1330px) {
-        max-width: 105.52px;
+        max-width: 95.52px;
       }
     }
 
     strong {
-      font-size: 3.5rem;
+      font-size: 3rem;
       color: white;
       display: flex;
       flex-direction: column;
@@ -79,13 +79,13 @@
       line-height: 1;
 
       span {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
 
       @media (max-width: 1330px) {
         text-align: center;
         align-items: center;
-        font-size: 2.5rem;
+        font-size: 2rem;
 
         span {
           font-size: 1.5rem;
