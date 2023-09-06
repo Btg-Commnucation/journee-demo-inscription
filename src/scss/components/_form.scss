@@ -188,14 +188,11 @@ form {
 
   .btn-container {
     display: flex;
-    justify-content: space-around;
-    gap: 2rem;
+    justify-content: center;
     align-items: center;
     margin-top: 7.8rem;
 
     @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
       margin-top: 2.9rem;
     }
   }
@@ -218,16 +215,6 @@ form {
     &:hover {
       background: white;
       color: var.$blue;
-    }
-
-    &.btn-two {
-      background: black;
-      border-color: black;
-
-      &:hover {
-        background: white;
-        color: black;
-      }
     }
   }
 }

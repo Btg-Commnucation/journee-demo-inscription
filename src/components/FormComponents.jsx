@@ -27,7 +27,7 @@ const userSchema = object().shape({
     .min(2, "Le nom de la société est invalide")
     .required("Le nom de votre entreprise est requis"),
   dayToCome: string()
-    .oneOf(["4 octobre", "5 octobre", "Les 4 et 5 octobre"])
+    .oneOf(["4 octobre", "5 octobre", "Les 4 et 5 octobre"], "Date invalide")
     .required("Veuillez choisir une date"),
   interest: string().oneOf([
     "Covering",
@@ -77,15 +77,8 @@ const FormComponents = () => {
             <strong>le 4 et 5 octobre 2023 - 10h00 - 18h30</strong>
             <p>TOULOUSE - Domaine de Montjoie</p>
             <div className="btn-container">
-              <a href="/plan_acces_jpo.pdf" target="_blank">
-                Télécharger les infos pratiques au format PDF
-              </a>
-              <a
-                href="/invitation-JPO-toulouse.pdf"
-                target="_blank"
-                className="btn-two"
-              >
-                Téléchargez votre invitation
+              <a href="/plan_et_invitation.pdf" target="_blank">
+                Télécharger votre invitation avec un plan d&apos;accès
               </a>
             </div>
           </div>
@@ -265,9 +258,11 @@ const FormComponents = () => {
                     <option value="" disabled selected>
                       --Veuillez choisir une date--
                     </option>
-                    <option value="Covering">4 octobre</option>
-                    <option value="Vitrophanie">5 octobre</option>
-                    <option value="Enseigne">Les 4 et 5 octobre</option>
+                    <option value="4 octobre">4 octobre</option>
+                    <option value="5 octobre">5 octobre</option>
+                    <option value="Les 4 et 5 octobre">
+                      Les 4 et 5 octobre
+                    </option>
                   </Field>
                   <ErrorMessage
                     name="dayToCome"
