@@ -5,9 +5,9 @@ form {
   grid-template-columns: repeat(2, 1fr);
   justify-items: start;
   align-items: center;
-  column-gap: 3.1rem;
-  row-gap: 2.1rem;
-  margin-top: 3.8rem;
+  column-gap: 2.5rem;
+  row-gap: 1.2rem;
+  margin-top: 2rem;
 
   @media (max-width: 768px) {
     display: flex;
@@ -19,7 +19,7 @@ form {
   label {
     color: black;
     font-weight: 700;
-    font-size: 2.4rem;
+    font-size: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,11 +38,12 @@ form {
   }
 
   input {
-    margin-top: 0.9rem;
+    margin-top: 0.5rem;
     width: 100%;
     border: 1px solid black;
-    padding: 1rem;
+    padding: 0.5rem;
     font-weight: 400;
+    font-size: 2rem;
 
     &[type="checkbox"] {
       appearance: none;
@@ -86,7 +87,7 @@ form {
 
   .required-field {
     grid-column: 1 / 3;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 400;
   }
 
@@ -96,12 +97,17 @@ form {
     align-items: start;
     width: 100%;
     grid-column: 1 / 3;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 400;
     gap: 1.1rem;
 
     input {
       width: fit-content;
+    }
+
+    @media (max-width: 768px) {
+      line-height: 1.3;
+      font-size: 1.5rem;
     }
   }
 
@@ -110,11 +116,16 @@ form {
     background: var.$blue;
     color: white;
     border: 1px solid var.$blue;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    padding-block: 1.9rem;
+    padding-block: 1.5rem;
     grid-column: 1 / 3;
     transition: 0.3s ease-in-out;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+      padding-block: 1.4rem;
+    }
 
     &:hover {
       background: white;
@@ -126,7 +137,7 @@ form {
     font-size: 1.4rem;
     font-weight: 300;
     position: absolute;
-    bottom: -20%;
+    bottom: -23%;
     left: 0;
     color: var.$red;
   }
@@ -136,13 +147,14 @@ form {
   margin-top: 5.8rem;
 
   h2 {
-    text-align: center;
     color: var.$blue;
     font-size: 5.3rem;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
 
     @media (max-width: 1330px) {
-      text-align: center;
-      text-transform: uppercase;
+      font-size: 4rem;
     }
 
     @media (max-width: 400px) {
@@ -154,20 +166,29 @@ form {
     color: black;
     font-weight: 700;
     font-size: 4.5rem;
+    text-align: center;
+    margin-inline: auto;
+    display: flow-root;
 
     @media (max-width: 1330px) {
-      text-align: center;
-      margin-inline: auto;
-      display: flow-root;
+      font-size: 3.5rem;
+      margin-top: 1.4rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
     }
   }
 
   p {
     color: var.$blue;
     font-size: 3.1rem;
+    text-align: center;
+    font-weight: 700;
 
     @media (max-width: 1330px) {
-      text-align: center;
+      font-size: 2.1rem;
+      margin-top: 1.4rem;
     }
   }
 
@@ -184,6 +205,15 @@ form {
     margin-top: 7.8rem;
     font-weight: 600;
     font-size: 3rem;
+
+    @media (max-width: 1330px) {
+      font-size: 2rem;
+      padding-block: 1.4rem;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 2.9rem;
+    }
   }
 }
 
@@ -196,4 +226,11 @@ form {
     text-align: center;
     display: flow-root;
   }
+}
+
+select {
+  width: 100%;
+  border: 1px solid black;
+  font-size: 1.9rem;
+  padding: 1rem;
 }

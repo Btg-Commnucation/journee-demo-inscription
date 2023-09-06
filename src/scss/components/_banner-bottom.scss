@@ -10,11 +10,15 @@
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 768px) {
+      padding-top: 4.8rem;
+    }
+
     .img-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 65%;
+      width: 57%;
     }
 
     @media (max-width: 1330px) {
@@ -24,6 +28,7 @@
 
       .img-container {
         width: 100%;
+        justify-content: space-around;
       }
     }
 
@@ -39,6 +44,10 @@
     .logomulti {
       max-width: 355px;
 
+      @media (max-width: 1330px) {
+        max-width: 248px;
+      }
+
       @media (max-width: 520px) {
         max-width: 100%;
       }
@@ -46,10 +55,18 @@
 
     .logo-hp {
       max-width: 83px;
+
+      @media (max-width: 1330px) {
+        max-width: 61.34px;
+      }
     }
 
-    .log-hexis {
+    .logo-hexis {
       width: 143px;
+
+      @media (max-width: 1330px) {
+        max-width: 105.52px;
+      }
     }
 
     strong {
@@ -61,13 +78,19 @@
       align-items: start;
       line-height: 1;
 
+      span {
+        font-size: 2.5rem;
+      }
+
       @media (max-width: 1330px) {
         text-align: center;
         align-items: center;
-      }
-
-      span {
         font-size: 2.5rem;
+
+        span {
+          font-size: 1.5rem;
+          margin-top: 0.5rem;
+        }
       }
     }
   }

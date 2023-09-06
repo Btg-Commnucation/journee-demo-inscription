@@ -4,17 +4,34 @@ import axios from "axios";
 import { useState } from "react";
 import Title from "./Title";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const userSchema = object().shape({
   prenom: string().required("Votre prénom est requis"),
   nom: string().required("Votre nom est requis"),
   email: string()
     .email("L'adresse renseigné est invalide")
     .required("L'email est requis"),
-  phoneNumber: string().length(10),
-  town: string(),
-  country: string(),
-  zipCode: string().length(5),
+  phoneNumber: string()
+    .length(10, "Le numéro de téléphone est invalide")
+    .matches(phoneRegExp, "Le numéro de téléphone est invalide")
+    .required("Votre numéro de téléphone est requis"),
+  town: string().required("Le nom de votre ville est requis"),
+  country: string().required("Votre pays est requis"),
+  zipCode: string()
+    .length(5, "Le code postal doit faire 5 caractères")
+    .required("Votre code postal est requis"),
   consent: bool().oneOf([true], "Vous devez accepter les conditions"),
+  societe: string()
+    .min(2, "Le nom de la société est invalide")
+    .required("Le nom de votre entreprise est requis"),
+  interest: string().oneOf([
+    "Covering",
+    "Vitrophanie",
+    "Enseigne",
+    "Décoration",
+  ]),
 });
 
 const FormComponents = () => {
@@ -27,10 +44,12 @@ const FormComponents = () => {
     payload.set("prenom", values.prenom);
     payload.set("nom", values.nom);
     payload.set("email", values.email);
-    payload.set("sms", values.phoneNumber);
+    payload.set("phoneNumber", values.phoneNumber);
     payload.set("town", values.town);
     payload.set("country", values.country);
     payload.set("zipCode", values.zipCode);
+    payload.set("societe", values.societe);
+    payload.set("interest", values.interest);
 
     try {
       const response = await axios.post(
@@ -48,16 +67,18 @@ const FormComponents = () => {
   return (
     <>
       {isSubmitted ? (
-        <div className="success-message">
-          <h2>Merci pour votre inscription et rendez-vous</h2>
-          <strong>le 4 et 5 octobre 2023 - 10h00 - 18h30</strong>
-          <p>TOULOUSE - Domaine de Montjoie</p>
-          <a href="/plan_acces_jpo.pdf" target="_blank">
-            Télécharger les infos pratiques au format PDF
-          </a>
+        <div className="container">
+          <div className="success-message">
+            <h2>Merci pour votre inscription et rendez-vous</h2>
+            <strong>le 4 et 5 octobre 2023 - 10h00 - 18h30</strong>
+            <p>TOULOUSE - Domaine de Montjoie</p>
+            <a href="/plan_acces_jpo.pdf" target="_blank">
+              Télécharger les infos pratiques au format PDF
+            </a>
+          </div>
         </div>
       ) : (
-        <>
+        <div className="container-narrow">
           <Title />
           <Formik
             initialValues={{
@@ -81,7 +102,7 @@ const FormComponents = () => {
                   </span>
                   <Field
                     name="prenom"
-                    ariaLabel="Votre prénom"
+                    aria-label="Votre prénom"
                     className={
                       errors.prenom && touched.prenom ? "error-field" : null
                     }
@@ -98,7 +119,7 @@ const FormComponents = () => {
                   </span>
                   <Field
                     name="nom"
-                    ariaLabel="Votre nom"
+                    aria-label="Votre nom"
                     className={errors.nom && touched.nom ? "error-field" : null}
                   />
                   <ErrorMessage
@@ -113,7 +134,7 @@ const FormComponents = () => {
                   </span>
                   <Field
                     name="email"
-                    ariaLabel="Votre email"
+                    aria-label="Votre email"
                     type="email"
                     className={
                       errors.email && touched.email ? "error-field" : null
@@ -126,10 +147,12 @@ const FormComponents = () => {
                   />
                 </label>
                 <label htmlFor="phoneNumber">
-                  Téléphone
+                  <span>
+                    Téléphone <span className="required">*</span>
+                  </span>
                   <Field
                     name="phoneNumber"
-                    ariaLabel="Votre numéro de téléphone"
+                    aria-label="Votre numéro de téléphone"
                     className={
                       errors.phoneNumber && touched.phoneNumber
                         ? "error-field"
@@ -142,11 +165,30 @@ const FormComponents = () => {
                     className="error-message"
                   />
                 </label>
-                <label htmlFor="town" className="town">
-                  Ville
+                <label htmlFor="societe">
+                  <span>
+                    Entreprise <span className="required">*</span>
+                  </span>
+                  <Field
+                    name="societe"
+                    aria-label="Nom de votre entreprise"
+                    className={
+                      errors.societe && touched.societe ? "error-field" : null
+                    }
+                  />
+                  <ErrorMessage
+                    name="societe"
+                    component="div"
+                    className="error-message"
+                  />
+                </label>
+                <label htmlFor="town">
+                  <span>
+                    Ville <span className="required">*</span>
+                  </span>
                   <Field
                     name="town"
-                    ariaLabel="Votre ville de résidence"
+                    aria-label="Votre ville de résidence"
                     className={
                       errors.town && touched.town ? "error-field" : null
                     }
@@ -158,10 +200,12 @@ const FormComponents = () => {
                   />
                 </label>
                 <label htmlFor="country">
-                  Pays
+                  <span>
+                    Pays <span className="required">*</span>
+                  </span>
                   <Field
                     name="country"
-                    ariaLabel="Votre pays de résidence"
+                    aria-label="Votre pays de résidence"
                     className={
                       errors.country && touched.country ? "error-field" : null
                     }
@@ -173,16 +217,43 @@ const FormComponents = () => {
                   />
                 </label>
                 <label htmlFor="zipCode">
-                  Code postal
+                  <span>
+                    Code postal <span className="required">*</span>
+                  </span>
                   <Field
                     name="zipCode"
-                    ariaLabel="Votre code postal"
+                    aria-label="Votre code postal"
                     className={
                       errors.zipCode && touched.zipCode ? "error-field" : null
                     }
                   />
                   <ErrorMessage
                     name="zipCode"
+                    component="div"
+                    className="error-message"
+                  />
+                </label>
+                <label htmlFor="interest" className="town">
+                  Votre centre d&apos;intérêt
+                  <Field
+                    name="interest"
+                    id="interest"
+                    aria-label="Votre centre d'intérêt"
+                    className={
+                      errors.interest && touched.interest ? "error-field" : null
+                    }
+                    as="select"
+                  >
+                    <option value="" disabled selected>
+                      --Veuillez choisir une option--
+                    </option>
+                    <option value="Covering">Covering</option>
+                    <option value="Vitrophanie">Vitrophanie</option>
+                    <option value="Enseigne">Enseigne</option>
+                    <option value="Décoration">Décoration</option>
+                  </Field>
+                  <ErrorMessage
+                    name="interest"
                     component="div"
                     className="error-message"
                   />
@@ -224,7 +295,12 @@ const FormComponents = () => {
               </Form>
             )}
           </Formik>
-        </>
+          <div className="informations">
+            <h3>Informations</h3>
+            <a href="mailto:web@multigraphic.fr">web@multigraphic.fr</a>
+            <a href="tel:+33145067688">Tel. 0145067688</a>
+          </div>
+        </div>
       )}
     </>
   );
