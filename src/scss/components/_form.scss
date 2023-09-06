@@ -122,6 +122,8 @@ form {
     padding-block: 1.5rem;
     grid-column: 1;
     transition: 0.3s ease-in-out;
+    grid-column: 1 / 3;
+    justify-self: right;
 
     @media (max-width: 768px) {
       font-size: 2rem;
@@ -145,36 +147,36 @@ form {
 }
 
 .success-message {
-  margin-top: 2rem;
+  margin-top: 7.8rem;
 
   h2 {
     color: var.$blue;
-    font-size: 3rem;
+    font-size: 4rem;
     text-transform: uppercase;
     text-align: center;
     line-height: 1;
 
     @media (max-width: 768px) {
-      font-size: 2rem;
+      font-size: 3rem;
     }
   }
 
   strong {
     color: black;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
     margin-inline: auto;
     display: flow-root;
 
     @media (max-width: 768px) {
-      font-size: 1.6rem;
+      font-size: 2rem;
     }
   }
 
   p {
     color: var.$blue;
-    font-size: 1.6rem;
+    font-size: 2.5rem;
     text-align: center;
     font-weight: 700;
 
@@ -189,6 +191,13 @@ form {
     justify-content: space-around;
     gap: 2rem;
     align-items: center;
+    margin-top: 7.8rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2.9rem;
+    }
   }
 
   a {
@@ -200,7 +209,6 @@ form {
     display: flow-root;
     width: fit-content;
     text-align: center;
-    margin-top: 7.8rem;
     font-weight: 600;
     padding-inline: 2rem;
     font-size: 2.5rem;
@@ -220,10 +228,6 @@ form {
         background: white;
         color: black;
       }
-    }
-
-    @media (max-width: 768px) {
-      margin-top: 2.9rem;
     }
   }
 }
