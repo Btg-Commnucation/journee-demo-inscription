@@ -1,7 +1,7 @@
 @use "../abstracts" as var;
 
 h1 {
-  font-size: 5.3rem;
+  font-size: 4.9rem;
   color: var.$blue;
   line-height: 1;
 
@@ -33,14 +33,14 @@ article {
 }
 
 .informations {
-  margin-top: 6rem;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
 
   a {
-    font-size: 2.4rem;
+    font-size: 1.7rem;
     color: black;
     font-weight: 700;
     text-decoration: none;
@@ -48,6 +48,6 @@ article {
 }
 
 h3 {
-  font-size: 3.7rem;
+  font-size: 3rem;
   line-height: 1;
 }
